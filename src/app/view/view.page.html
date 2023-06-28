@@ -1,0 +1,30 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-title>
+      <p>Subject & Marks</p>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-reorder-group (ionItemReorder)="onRenderItems($any($event))" disabled="false">  
+  <ion-card *ngFor="let name of savesubject, let i = index">
+    <ion-reorder></ion-reorder>  
+    <ion-card-header>
+      <ion-icon name="ellipsis-vertical-sharp" class="ionic-more" (click)="presentActionSheet(i,name)"></ion-icon>
+      <ion-card-title>{{ name.name }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ng-container *ngFor="let result of name.subject">
+        <h1>
+        {{ result.subjectname }} : {{ result.marks }}
+        </h1>
+      </ng-container>
+    </ion-card-content>
+  </ion-card>
+</ion-reorder-group>  
+</ion-content>
+<ion-footer>
+  <ion-row>
+    <ion-button [routerLink]="['/home']" fill="clear" expand="block"> Add Student Result</ion-button>
+  </ion-row>
+</ion-footer>
